@@ -1,0 +1,67 @@
+{
+  "name": "noteli",
+  "description": "A CLI based Notes App built using TypeScript, MongoDB and Auth0.",
+  "version": "1.0.0",
+  "author": "sahilpabale @sahilpabale",
+  "bin": {
+    "noteli": "./bin/run"
+  },
+  "bugs": "https://github.com/sahilpabale/noteli/issues",
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.3",
+    "chalk": "^4.1.2",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.1.2",
+    "tslib": "^1.14.1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "@oclif/test": "^1.2.8",
+    "@types/chai": "^4.2.21",
+    "@types/figlet": "^1.5.4",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.17.60",
+    "chai": "^4.3.4",
+    "globby": "^10.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.10"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/sahilpabale/noteli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "noteli",
+    "hooks": {
+      "init": "./src/hooks/init"
+    },
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "sahilpabale/noteli",
+  "scripts": {
+    "postpack": "rimraf oclif.manifest.json",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
