@@ -20,7 +20,7 @@ $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.0.1 win32-x64 node-v14.16.1
+noteli/1.0.2 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
