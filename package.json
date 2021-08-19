@@ -56,7 +56,10 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "sahilpabale/noteli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahilpabale/noteli.git"
+  },
   "scripts": {
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
