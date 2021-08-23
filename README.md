@@ -22,7 +22,7 @@ $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.1.2 win32-x64 node-v14.16.1
+noteli/1.1.3 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
@@ -45,7 +45,7 @@ USAGE
   $ noteli auth
 ```
 
-_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.1.2/src/commands/auth.ts)_
+_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.1.3/src/commands/auth.ts)_
 
 ## `noteli create`
 
@@ -54,7 +54,7 @@ USAGE
   $ noteli create
 ```
 
-_See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v1.1.2/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v1.1.3/src/commands/create.ts)_
 
 ## `noteli help [COMMAND]`
 
@@ -80,5 +80,5 @@ USAGE
   $ noteli test
 ```
 
-_See code: [src/commands/test.ts](https://github.com/sahilpabale/noteli/blob/v1.1.2/src/commands/test.ts)_
+_See code: [src/commands/test.ts](https://github.com/sahilpabale/noteli/blob/v1.1.3/src/commands/test.ts)_
 <!-- commandsstop -->
