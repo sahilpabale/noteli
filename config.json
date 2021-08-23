@@ -1,7 +1,0 @@
-{
-  "mongo_uri": "mongodb+srv://admin:admin@noteli.jjz4g.mongodb.net/noteli?retryWrites=true&w=majority",
-  "baseURL": "http://localhost:3000",
-  "clientID": "lkQ1zyXdfFwI8019STfP259Jb37IoaI7",
-  "issuerBaseURL": "https://sahilpabale.us.auth0.com",
-  "clientSecret": "K53JSwJuP75e6E0-OS6N_BxPc-KqN1GlRGiC1_tMKAULwH4KSn2_jPWzzGd2-bh8"
-}
