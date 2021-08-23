@@ -69,9 +69,8 @@
     "url": "git+https://github.com/sahilpabale/noteli.git"
   },
   "scripts": {
-    "preinstall": "node ./src/config.ts",
     "postpack": "rimraf oclif.manifest.json",
-    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme && node ./src/config.ts",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
