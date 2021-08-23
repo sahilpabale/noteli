@@ -1,5 +1,5 @@
 {
-  "name": "@sahilpabale/noteli",
+  "name": "noteli",
   "description": "A CLI based Notes App built using TypeScript, MongoDB and Auth0.",
   "version": "1.0.2",
   "author": "sahilpabale @sahilpabale",
