@@ -12,7 +12,7 @@ export class Test extends Command {
       if (typeof token == "string") {
         this.log(token);
       } else {
-        throw new Error(token.message);
+        throw new Error(token);
       }
     } catch (error) {
       this.log(chalk.red(`\n  ${error.message}`));

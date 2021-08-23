@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as chalk from "chalk";
 import * as os from "os";
-const config = require("../../config.json");
+import config from "./Config";
 import axios from "axios";
 
 export default class TokenConfig {
@@ -43,7 +43,7 @@ export default class TokenConfig {
       }
     }
   }
-  async getToken(isWindows: boolean): Promise<string | Error> {
+  async getToken(isWindows: boolean): Promise<string> {
     if (isWindows) {
       try {
         const tokenLoc = path.join(os.homedir(), "\\.noteli");
@@ -51,7 +51,7 @@ export default class TokenConfig {
         return data;
       } catch (error) {
         if (error.code == "ENOENT") {
-          return new Error("You aren't authorized!");
+          return "You aren't authorized!";
         }
         return error;
       }
@@ -68,8 +68,9 @@ export default class TokenConfig {
 
   async getUser(token: string): Promise<any> {
     try {
+      const configData = await config();
       const response = await axios.post(
-        `${config.issuerBaseURL}/userinfo`,
+        `${configData.issuerBaseURL}/userinfo`,
         {},
         {
           headers: {

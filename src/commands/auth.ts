@@ -7,12 +7,14 @@ import * as express from "express";
 import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
-let config = require("../../config");
+import config from "../utils/Config";
 
 const tokenConfig = new TokenConfig();
 
 export class Auth extends Command {
   async run() {
+    const configData = await config();
+
     inquirer
       .prompt({
         name: "authorize",
@@ -56,14 +58,14 @@ export class Auth extends Command {
             });
 
             open(
-              `${config.issuerBaseURL}/authorize?response_type=code&client_id=${config.clientID}&redirect_uri=${config.baseURL}/callback&scope=openid%20profile%20email&state=testing`
+              `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
             );
             // Wait for the first auth code
             const code = await p;
 
             const response = await axios.post(
-              `${config.issuerBaseURL}/oauth/token`,
-              `grant_type=authorization_code&client_id=${config.clientID}&client_secret=${config.clientSecret}&code=${code}&redirect_uri=${config.baseURL}/callback`
+              `${configData.issuerBaseURL}/oauth/token`,
+              `grant_type=authorization_code&client_id=${configData.clientID}&client_secret=${configData.clientSecret}&code=${code}&redirect_uri=${configData.baseURL}/callback`
             );
 
             const access_token = response.data["access_token"];

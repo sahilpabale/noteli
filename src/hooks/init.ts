@@ -5,7 +5,7 @@ import * as chalk from "chalk";
 const hook: Hook<"init"> = async function (opts) {
   console.log(
     chalk.red(
-      figlet.textSync("noteli cli", {
+      figlet.textSync("Noteli", {
         horizontalLayout: "full",
       })
     )
