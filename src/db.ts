@@ -1,11 +1,12 @@
 import * as mongoose from "mongoose";
-let config = require("../config");
 
-const uri = config.mongo_uri;
+import { getConfig, Config } from "../src/utils/Config";
 
 (async function () {
   try {
-    await mongoose.connect(uri, {
+    const config = await getConfig();
+    const { mongo_uri } = config;
+    await mongoose.connect(mongo_uri, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,

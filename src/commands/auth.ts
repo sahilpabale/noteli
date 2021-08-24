@@ -7,7 +7,7 @@ import * as express from "express";
 import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
-import config from "../utils/Config";
+import { getConfig, Config } from "../utils/Config";
 import ux from "cli-ux";
 
 const tokenConfig = new TokenConfig();
@@ -17,7 +17,7 @@ export class Auth extends Command {
 
   async init() {
     // Initialization step to load configs and etc
-    this.configData = await config();
+    this.configData = await getConfig();
 
     // check for existing token (if its authorized or not)
   }

@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-interface Config {
+export interface Config {
   mongo_uri: string;
   baseURL: string;
   clientID: string;
@@ -8,7 +8,7 @@ interface Config {
   clientSecret: string;
 }
 
-export default async (): Promise<Config> => {
+export async function getConfig(): Promise<Config> {
   try {
     const response = await axios.post(
       "https://configapi.sahilpabale.repl.co/config"
@@ -18,4 +18,4 @@ export default async (): Promise<Config> => {
   } catch (error) {
     return error;
   }
-};
+}

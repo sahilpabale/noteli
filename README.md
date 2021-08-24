@@ -8,14 +8,16 @@ A CLI based Notes App built using TypeScript, MongoDB and Auth0.
 [![License](https://img.shields.io/npm/l/noteli.svg)](https://github.com/sahilpabale/noteli/blob/master/package.json)
 
 <!-- toc -->
-* [noteli](#noteli)
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [noteli](#noteli)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g noteli
 $ noteli COMMAND
@@ -27,15 +29,17 @@ USAGE
   $ noteli COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`noteli auth`](#noteli-auth)
-* [`noteli help [COMMAND]`](#noteli-help-command)
-* [`noteli test`](#noteli-test)
-* [`noteli whoami`](#noteli-whoami)
+
+- [`noteli auth`](#noteli-auth)
+- [`noteli help [COMMAND]`](#noteli-help-command)
+- [`noteli test`](#noteli-test)
+- [`noteli whoami`](#noteli-whoami)
 
 ## `noteli auth`
 
@@ -80,4 +84,5 @@ USAGE
 ```
 
 _See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.2.0/src/commands/whoami.ts)_
+
 <!-- commandsstop -->

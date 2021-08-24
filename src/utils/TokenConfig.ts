@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as chalk from "chalk";
 import * as os from "os";
-import config from "./Config";
+import { getConfig, Config } from "./Config";
 import axios from "axios";
 
 export default class TokenConfig {
@@ -68,7 +68,7 @@ export default class TokenConfig {
 
   async getUser(token: string): Promise<any> {
     try {
-      const configData = await config();
+      const configData: Config = await getConfig();
       const response = await axios.post(
         `${configData.issuerBaseURL}/userinfo`,
         {},
