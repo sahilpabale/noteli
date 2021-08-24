@@ -1,9 +1,9 @@
 import Command from "@oclif/command";
 import * as chalk from "chalk";
 import TokenConfig from "../utils/TokenConfig";
-import ux, { cli } from "cli-ux";
+import ux from "cli-ux";
 
-export class WhoAmI extends Command {
+export class Whoami extends Command {
   async run() {
     ux.action.start(chalk.yellow("Fetching your account"), "loading");
 
