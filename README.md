@@ -8,37 +8,34 @@ A CLI based Notes App built using TypeScript, MongoDB and Auth0.
 [![License](https://img.shields.io/npm/l/noteli.svg)](https://github.com/sahilpabale/noteli/blob/master/package.json)
 
 <!-- toc -->
-
-- [noteli](#noteli)
-- [Usage](#usage)
-- [Commands](#commands)
+* [noteli](#noteli)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.1.5 win32-x64 node-v14.16.1
+noteli/1.2.0 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-
-- [`noteli auth`](#noteli-auth)
-- [`noteli help [COMMAND]`](#noteli-help-command)
-- [`noteli whoami`](#noteli-whoami)
+* [`noteli auth`](#noteli-auth)
+* [`noteli help [COMMAND]`](#noteli-help-command)
+* [`noteli test`](#noteli-test)
+* [`noteli whoami`](#noteli-whoami)
 
 ## `noteli auth`
 
@@ -47,7 +44,7 @@ USAGE
   $ noteli auth
 ```
 
-_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.1.5/src/commands/auth.ts)_
+_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.2.0/src/commands/auth.ts)_
 
 ## `noteli help [COMMAND]`
 
@@ -66,6 +63,15 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
+## `noteli test`
+
+```
+USAGE
+  $ noteli test
+```
+
+_See code: [src/commands/test.ts](https://github.com/sahilpabale/noteli/blob/v1.2.0/src/commands/test.ts)_
+
 ## `noteli whoami`
 
 ```
@@ -73,6 +79,5 @@ USAGE
   $ noteli whoami
 ```
 
-_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.1.5/src/commands/whoami.ts)_
-
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.2.0/src/commands/whoami.ts)_
 <!-- commandsstop -->
