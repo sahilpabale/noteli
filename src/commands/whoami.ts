@@ -1,10 +1,11 @@
 import Command from "@oclif/command";
 import * as chalk from "chalk";
 import TokenConfig from "../utils/TokenConfig";
+import ux, { cli } from "cli-ux";
 
 export class WhoAmI extends Command {
   async run() {
-    this.log(chalk.yellow("Loading your account..."));
+    ux.action.start(chalk.yellow("Fetching your account"), "loading");
 
     try {
       const tokenConfig = new TokenConfig();
@@ -13,8 +14,8 @@ export class WhoAmI extends Command {
 
       const user = await tokenConfig.getUser(token);
 
-      this.log(
-        `You are logged in as ${chalk.greenBright(
+      ux.action.stop(
+        `\nYou are logged in as ${chalk.greenBright(
           user.name + " - " + user.email
         )}`
       );

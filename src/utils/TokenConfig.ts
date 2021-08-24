@@ -80,9 +80,7 @@ export default class TokenConfig {
       );
       return response.data;
     } catch (error) {
-      console.log(error);
-
-      return error.message;
+      return null;
     }
   }
 

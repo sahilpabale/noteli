@@ -8,13 +8,21 @@ import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
 import config from "../utils/Config";
+import ux from "cli-ux";
 
 const tokenConfig = new TokenConfig();
 
 export class Auth extends Command {
-  async run() {
-    const configData = await config();
+  configData: any = {};
 
+  async init() {
+    // Initialization step to load configs and etc
+    this.configData = await config();
+
+    // check for existing token (if its authorized or not)
+  }
+
+  async authorize() {
     inquirer
       .prompt({
         name: "authorize",
@@ -45,27 +53,20 @@ export class Auth extends Command {
             });
 
             app.get("/done", (req: Request, res: Response) => {
-              res.sendFile(
-                path.join(__dirname, "../template/auth_done.html"),
-                {},
-                (err) => {
-                  if (err)
-                    res.send(
-                      "Successfully authorized!\nNow you can close this browser and return to CLI!"
-                    );
-                }
+              res.send(
+                "Successfully authorized!<br/>Now you can close this browser and return to CLI!"
               );
             });
 
             open(
-              `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
+              `${this.configData.issuerBaseURL}/authorize?response_type=code&client_id=${this.configData.clientID}&redirect_uri=${this.configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
             );
             // Wait for the first auth code
             const code = await p;
 
             const response = await axios.post(
-              `${configData.issuerBaseURL}/oauth/token`,
-              `grant_type=authorization_code&client_id=${configData.clientID}&client_secret=${configData.clientSecret}&code=${code}&redirect_uri=${configData.baseURL}/callback`
+              `${this.configData.issuerBaseURL}/oauth/token`,
+              `grant_type=authorization_code&client_id=${this.configData.clientID}&client_secret=${this.configData.clientSecret}&code=${code}&redirect_uri=${this.configData.baseURL}/callback`
             );
 
             const access_token = response.data["access_token"];
@@ -90,5 +91,31 @@ export class Auth extends Command {
         }
       })
       .catch((err) => this.log(err));
+  }
+  async run() {
+    tokenConfig
+      .getToken(this.config.windows)
+      .then(async (token) => {
+        if (token == "") {
+          await this.authorize();
+        } else {
+          tokenConfig
+            .getUser(token)
+            .then(async (user) => {
+              if (user != null) {
+                this.log(chalk.yellow("An account already exists!"));
+                this.log("Logged in as " + chalk.greenBright(user.email));
+              } else {
+                await this.authorize();
+              }
+            })
+            .catch(async (err) => {
+              await this.authorize();
+            });
+        }
+      })
+      .catch(async (err) => {
+        await this.authorize();
+      });
   }
 }

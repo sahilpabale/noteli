@@ -13,7 +13,9 @@
     "@oclif/plugin-help": "^3.2.3",
     "axios": "^0.21.1",
     "chalk": "^4.1.2",
+    "cli-ux": "^5.6.3",
     "express": "^4.17.1",
+    "figchalk": "^1.0.3",
     "figlet": "^1.5.2",
     "inquirer": "^8.1.2",
     "mongoose": "^5.13.7",
@@ -57,9 +59,6 @@
   "oclif": {
     "commands": "./lib/commands",
     "bin": "noteli",
-    "hooks": {
-      "init": "./src/hooks/init"
-    },
     "plugins": [
       "@oclif/plugin-help"
     ]
@@ -70,7 +69,7 @@
   },
   "scripts": {
     "postpack": "rimraf oclif.manifest.json",
-    "prepack": "rimraf lib && tsc -b && tsc && oclif-dev manifest && oclif-dev readme",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
