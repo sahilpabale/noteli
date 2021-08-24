@@ -6,5 +6,3 @@
 /tmp
 /yarn.lock
 node_modules
-tsconfig.tsbuildinfo
-/src/commands/test.ts

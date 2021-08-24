@@ -6,7 +6,5 @@ console.log(figchalk.mix("N o t e l i", "redBright"));
 
 require("@oclif/command")
   .run()
-  .then(() => {
-    require("@oclif/command/flush");
-  })
+  .then(require("@oclif/command/flush"))
   .catch(require("@oclif/errors/handle"));
