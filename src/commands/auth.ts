@@ -1,13 +1,12 @@
 import Command from "@oclif/command";
 import * as chalk from "chalk";
 import * as inquirer from "inquirer";
-import * as path from "path";
 import axios from "axios";
 import * as express from "express";
 import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
-import { getConfig, Config } from "../utils/Config";
+import { getConfig } from "../utils/Config";
 import ux from "cli-ux";
 
 const tokenConfig = new TokenConfig();
@@ -16,6 +15,10 @@ export class Auth extends Command {
   configData: any = {};
 
   async init() {
+    const figchalk = require("figchalk");
+
+    console.log(figchalk.mix("N o t e l i", "redBright"));
+
     // Initialization step to load configs and etc
     this.configData = await getConfig();
 

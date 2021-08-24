@@ -4,6 +4,12 @@ import TokenConfig from "../utils/TokenConfig";
 import ux from "cli-ux";
 
 export class Whoami extends Command {
+  async init() {
+    const figchalk = require("figchalk");
+
+    console.log(figchalk.mix("N o t e l i", "redBright"));
+  }
+
   async run() {
     ux.action.start(chalk.yellow("Fetching your account"), "loading");
 
