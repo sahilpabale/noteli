@@ -2,15 +2,12 @@ import Command from "@oclif/command";
 import * as chalk from "chalk";
 import TokenConfig from "../utils/TokenConfig";
 import ux from "cli-ux";
+const figchalk = require("figchalk");
 
 export class Whoami extends Command {
-  async init() {
-    const figchalk = require("figchalk");
-
-    console.log(figchalk.mix("N o t e l i", "redBright"));
-  }
-
   async run() {
+    console.log(figchalk.mix("N o t e l i", "redBright"));
+
     ux.action.start(chalk.yellow("Fetching your account"), "loading");
 
     try {
