@@ -16,6 +16,7 @@
     "axios": "^0.21.1",
     "chalk": "^4.1.2",
     "cli-ux": "^5.6.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "figchalk": "^1.0.3",
     "figlet": "^1.5.2",
@@ -48,6 +49,7 @@
     "node": ">=8.0.0"
   },
   "files": [
+    "/.env",
     "/bin",
     "/lib",
     "/npm-shrinkwrap.json",

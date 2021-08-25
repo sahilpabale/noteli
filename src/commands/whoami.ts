@@ -4,15 +4,17 @@ import TokenConfig from "../utils/TokenConfig";
 import ux from "cli-ux";
 const figchalk = require("figchalk");
 
+const tokenConfig = new TokenConfig();
+
 export class Whoami extends Command {
   async run() {
+    this.log(process.env.TEST);
+
     console.log(figchalk.mix("N o t e l i", "redBright"));
 
     ux.action.start(chalk.yellow("Fetching your account"), "loading");
 
     try {
-      const tokenConfig = new TokenConfig();
-
       const token = await tokenConfig.getToken(this.config.windows);
 
       const user = await tokenConfig.getUser(token);
