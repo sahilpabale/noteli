@@ -51,6 +51,8 @@ export class Auth extends Command {
               );
             });
 
+            this.log(configData.issuerBaseURL);
+
             open(
               `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
             );
@@ -67,7 +69,7 @@ export class Auth extends Command {
 
             await tokenConfig.setToken(access_token, this.config.windows);
 
-            await server.close();
+            server.close();
             const user = await tokenConfig.getUser(access_token);
             this.log(
               "Logged in successfully as " + chalk.greenBright(user.email)
