@@ -52,7 +52,7 @@ export class Auth extends Command {
               );
             });
 
-            open(
+            await open(
               `${this.configData.issuerBaseURL}/authorize?response_type=code&client_id=${this.configData.clientID}&redirect_uri=${this.configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
             );
             // Wait for the first auth code
