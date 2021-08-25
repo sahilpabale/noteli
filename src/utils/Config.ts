@@ -6,7 +6,7 @@ export interface Config {
   clientSecret: string;
 }
 
-export async function getConfig(): Promise<Config> {
+export function getConfig(): Config {
   try {
     const data: Config = {
       mongo_uri: process.env.MONGO_URI!,

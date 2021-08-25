@@ -4,7 +4,7 @@ import { getConfig, Config } from "../src/utils/Config";
 
 (async function () {
   try {
-    const config: Config = await getConfig();
+    const config: Config = getConfig();
     const { mongo_uri } = config;
     await mongoose.connect(mongo_uri, {
       useNewUrlParser: true,

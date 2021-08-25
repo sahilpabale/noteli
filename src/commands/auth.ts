@@ -6,14 +6,13 @@ import * as express from "express";
 import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
-import { getConfig } from "../utils/Config";
+import { getConfig, Config } from "../utils/Config";
 const figchalk = require("figchalk");
 
 const tokenConfig = new TokenConfig();
+const configData: Config = getConfig();
 
 export class Auth extends Command {
-  configData: any = {};
-
   async init() {}
 
   async authorize() {
@@ -42,14 +41,7 @@ export class Auth extends Command {
             });
 
             await open(
-              `${this.configData.issuerBaseURL}/authorize?response_type=code&client_id=${this.configData.clientID}&redirect_uri=${this.configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`,
-              {
-                app: [
-                  { name: open.apps.chrome },
-                  { name: open.apps.firefox },
-                  { name: open.apps.edge },
-                ],
-              }
+              `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
             );
 
             app.get("/callback", (req: Request, res: Response) => {
@@ -67,8 +59,8 @@ export class Auth extends Command {
             const code = await p;
 
             const response = await axios.post(
-              `${this.configData.issuerBaseURL}/oauth/token`,
-              `grant_type=authorization_code&client_id=${this.configData.clientID}&client_secret=${this.configData.clientSecret}&code=${code}&redirect_uri=${this.configData.baseURL}/callback`
+              `${configData.issuerBaseURL}/oauth/token`,
+              `grant_type=authorization_code&client_id=${configData.clientID}&client_secret=${configData.clientSecret}&code=${code}&redirect_uri=${configData.baseURL}/callback`
             );
 
             const access_token = response.data["access_token"];
@@ -96,9 +88,6 @@ export class Auth extends Command {
   }
   async run() {
     console.log(figchalk.mix("N o t e l i", "redBright"));
-
-    // Initialization step to load configs and etc
-    this.configData = await getConfig();
 
     tokenConfig
       .getToken(this.config.windows)

@@ -65,7 +65,7 @@ export default class TokenConfig {
 
   async getUser(token: string): Promise<any> {
     try {
-      const configData: Config = await getConfig();
+      const configData: Config = getConfig();
       const response = await axios.post(
         `${configData.issuerBaseURL}/userinfo`,
         {},
