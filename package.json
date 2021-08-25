@@ -70,7 +70,7 @@
       "@oclif/plugin-warn-if-update-available"
     ],
     "warn-if-update-available": {
-      "timeoutInDays": 7,
+      "timeoutInDays": 1,
       "message": "<%= config.name %> update available from <%= chalk.greenBright(config.version) %> to <%= chalk.greenBright(latest) %>. <%= chalk.yellowBright(`\nJust run: npm update -g noteli`)%>"
     }
   },
@@ -80,7 +80,7 @@
   },
   "scripts": {
     "postpack": "rimraf oclif.manifest.json",
-    "prepack": "rimraf lib && tsc && oclif-dev manifest && oclif-dev readme",
+    "prepack": "rimraf lib && tsc --build && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
