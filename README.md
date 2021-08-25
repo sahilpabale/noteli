@@ -21,7 +21,7 @@ $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.2.15 win32-x64 node-v14.16.1
+noteli/1.2.16 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
@@ -44,7 +44,7 @@ USAGE
   $ noteli auth
 ```
 
-_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.2.15/src/commands/auth.ts)_
+_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.2.16/src/commands/auth.ts)_
 
 ## `noteli help [COMMAND]`
 
@@ -70,7 +70,7 @@ USAGE
   $ noteli logout
 ```
 
-_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.2.15/src/commands/logout.ts)_
+_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.2.16/src/commands/logout.ts)_
 
 ## `noteli whoami`
 
@@ -79,5 +79,5 @@ USAGE
   $ noteli whoami
 ```
 
-_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.2.15/src/commands/whoami.ts)_
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.2.16/src/commands/whoami.ts)_
 <!-- commandsstop -->
