@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 export interface Config {
   mongo_uri: string;
   baseURL: string;
@@ -10,10 +8,13 @@ export interface Config {
 
 export async function getConfig(): Promise<Config> {
   try {
-    const response = await axios.post(
-      "https://configapi.sahilpabale.repl.co/config"
-    );
-    const data: Config = response.data;
+    const data: Config = {
+      mongo_uri: process.env.MONGO_URI!,
+      baseURL: process.env.BASE_URL!,
+      clientID: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
+      issuerBaseURL: process.env.ISSUER_BASE_URL!,
+    };
     return data;
   } catch (error) {
     return error;

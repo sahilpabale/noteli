@@ -43,17 +43,14 @@ export default class TokenConfig {
       }
     }
   }
-  async getToken(isWindows: boolean): Promise<string> {
+  async getToken(isWindows: boolean): Promise<any> {
     if (isWindows) {
       try {
         const tokenLoc = path.join(os.homedir(), "\\.noteli");
         const data = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
         return data;
       } catch (error) {
-        if (error.code == "ENOENT") {
-          return "You aren't authorized!";
-        }
-        return error;
+        return null;
       }
     } else {
       try {
