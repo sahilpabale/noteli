@@ -40,10 +40,6 @@ export class Auth extends Command {
               resolve = _resolve;
             });
 
-            await open(
-              `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
-            );
-
             app.get("/callback", (req: Request, res: Response) => {
               resolve(req.query.code);
               res.redirect("done");
@@ -54,6 +50,10 @@ export class Auth extends Command {
                 "Successfully authorized!<br/>Now you can close this browser and return to CLI!"
               );
             });
+
+            open(
+              `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
+            );
 
             // Wait for the first auth code
             const code = await p;
