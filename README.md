@@ -21,7 +21,7 @@ $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.2.16 win32-x64 node-v14.16.1
+noteli/1.3.0 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
@@ -39,12 +39,17 @@ USAGE
 
 ## `noteli auth`
 
+authorize the user for noteli
+
 ```
 USAGE
   $ noteli auth
+
+DESCRIPTION
+  Uses Auth0 Social Login to authorize user using browser.
 ```
 
-_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.2.16/src/commands/auth.ts)_
+_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.3.0/src/commands/auth.ts)_
 
 ## `noteli help [COMMAND]`
 
@@ -65,19 +70,29 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3
 
 ## `noteli logout`
 
+logout the user from noteli
+
 ```
 USAGE
   $ noteli logout
+
+DESCRIPTION
+  Revokes the token and logs out user from system.
 ```
 
-_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.2.16/src/commands/logout.ts)_
+_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.3.0/src/commands/logout.ts)_
 
 ## `noteli whoami`
+
+shows the current logged-in user
 
 ```
 USAGE
   $ noteli whoami
+
+DESCRIPTION
+  Checks for the token and verifies with Auth0 for authencticity.
 ```
 
-_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.2.16/src/commands/whoami.ts)_
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.3.0/src/commands/whoami.ts)_
 <!-- commandsstop -->
