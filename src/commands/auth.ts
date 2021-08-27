@@ -6,16 +6,16 @@ import * as express from "express";
 import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
-import { getConfig, Config } from "../utils/Config";
 const figchalk = require("figchalk");
 
 const tokenConfig = new TokenConfig();
-const configData: Config = getConfig();
+const api = "https://noteli-api.sahilpabale.me/api";
 
 export class Auth extends Command {
-  async init() {}
+  static description = `authorize the user for noteli
+Uses Auth0 Social Login to authorize user using browser.`;
 
-  async authorize() {
+  private async authorize() {
     inquirer
       .prompt({
         name: "authorize",
@@ -32,7 +32,7 @@ export class Auth extends Command {
             app.use(express.json());
             app.use(express.urlencoded({ extended: false }));
 
-            const server = await app.listen(3000);
+            const server = app.listen(9991);
 
             let resolve: any;
 
@@ -40,32 +40,23 @@ export class Auth extends Command {
               resolve = _resolve;
             });
 
+            const authAPI = await axios.post(`${api}/authorize`);
+
             app.get("/callback", (req: Request, res: Response) => {
               resolve(req.query.code);
-              res.redirect("done");
+              res.redirect("https://noteli-client.vercel.app/done");
             });
 
-            app.get("/done", (req: Request, res: Response) => {
-              res.send(
-                "Successfully authorized!<br/>Now you can close this browser and return to CLI!"
-              );
-            });
+            const authUrl = authAPI.data["url"];
 
-            this.log(configData.issuerBaseURL);
-
-            open(
-              `${configData.issuerBaseURL}/authorize?response_type=code&client_id=${configData.clientID}&redirect_uri=${configData.baseURL}/callback&scope=openid%20profile%20email&state=testing`
-            );
+            open(authUrl);
 
             // Wait for the first auth code
             const code = await p;
 
-            const response = await axios.post(
-              `${configData.issuerBaseURL}/oauth/token`,
-              `grant_type=authorization_code&client_id=${configData.clientID}&client_secret=${configData.clientSecret}&code=${code}&redirect_uri=${configData.baseURL}/callback`
-            );
+            const response = await axios.post(`${api}/token`, { code });
 
-            const access_token = response.data["access_token"];
+            const access_token = response.data.token;
 
             await tokenConfig.setToken(access_token, this.config.windows);
 
@@ -89,8 +80,6 @@ export class Auth extends Command {
       .catch((err) => this.log(err));
   }
   async run() {
-    console.log(figchalk.mix("N o t e l i", "redBright"));
-
     tokenConfig
       .getToken(this.config.windows)
       .then(async (token) => {

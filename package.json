@@ -49,7 +49,6 @@
     "node": ">=8.0.0"
   },
   "files": [
-    "/.env",
     "/bin",
     "/lib",
     "/npm-shrinkwrap.json",
@@ -71,7 +70,7 @@
     ],
     "warn-if-update-available": {
       "timeoutInDays": 1,
-      "message": "<%= config.name %> update available from <%= chalk.greenBright(config.version) %> to <%= chalk.greenBright(latest) %>. <%= chalk.yellowBright(`\nJust run: npm update -g noteli`)%>"
+      "message": "<%= config.name %> update available from <%= chalk.greenBright(config.version) %> to <%= chalk.greenBright(latest) %>.<%= chalk.yellowBright(`\nUpdate(npm): npm update -g noteli`)%><%= chalk.yellowBright(`\nUpdate(yarn): yarn upgrade noteli`)%>"
     }
   },
   "repository": {
@@ -79,6 +78,7 @@
     "url": "git+https://github.com/sahilpabale/noteli.git"
   },
   "scripts": {
+    "build": "rimraf lib && tsc --build",
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "rimraf lib && tsc --build && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",

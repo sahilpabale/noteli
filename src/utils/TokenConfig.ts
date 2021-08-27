@@ -2,8 +2,9 @@ import * as fs from "fs";
 import * as path from "path";
 import * as chalk from "chalk";
 import * as os from "os";
-import { getConfig, Config } from "./Config";
 import axios from "axios";
+
+const api = "https://noteli-api.sahilpabale.me/api";
 
 export default class TokenConfig {
   async setToken(token: string, isWindows: boolean): Promise<void> {
@@ -43,6 +44,47 @@ export default class TokenConfig {
       }
     }
   }
+
+  async revokeToken(isWindows: boolean): Promise<void> {
+    if (isWindows) {
+      try {
+        const tokenLoc = path.join(os.homedir(), "\\.noteli");
+
+        if (await this.checkFile(tokenLoc)) {
+          fs.unlink(tokenLoc, (err) => {
+            if (err) {
+              console.log(chalk.redBright("Failed to log out!"));
+            } else {
+              console.log(chalk.greenBright("Successfully logged out!"));
+            }
+          });
+        } else {
+          console.log(chalk.greenBright("Successfully logged out!"));
+        }
+      } catch (error) {
+        console.log(chalk.redBright(error));
+      }
+    } else {
+      try {
+        const tokenLoc = path.join(os.homedir(), "/.noteli");
+
+        if (await this.checkFile(tokenLoc)) {
+          fs.unlink(tokenLoc, (err) => {
+            if (err) {
+              console.log(chalk.redBright("Failed to log out!"));
+            } else {
+              console.log(chalk.greenBright("Successfully logged out!"));
+            }
+          });
+        } else {
+          console.log(chalk.greenBright("Successfully logged out!"));
+        }
+      } catch (error) {
+        console.log(chalk.redBright(error));
+      }
+    }
+  }
+
   async getToken(isWindows: boolean): Promise<any> {
     if (isWindows) {
       try {
@@ -65,9 +107,8 @@ export default class TokenConfig {
 
   async getUser(token: string): Promise<any> {
     try {
-      const configData: Config = getConfig();
       const response = await axios.post(
-        `${configData.issuerBaseURL}/userinfo`,
+        `${api}/user`,
         {},
         {
           headers: {

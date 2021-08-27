@@ -7,9 +7,10 @@ const figchalk = require("figchalk");
 const tokenConfig = new TokenConfig();
 
 export class Whoami extends Command {
-  async run() {
-    console.log(figchalk.mix("N o t e l i", "redBright"));
+  static description = `shows the current logged-in user
+Checks for the token and verifies with Auth0 for authencticity.`;
 
+  async run() {
     try {
       const token = await tokenConfig.getToken(this.config.windows);
 
