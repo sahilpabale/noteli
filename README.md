@@ -21,7 +21,7 @@ $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.3.0 win32-x64 node-v14.16.1
+noteli/1.4.0 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
@@ -32,24 +32,45 @@ USAGE
 # Commands
 
 <!-- commands -->
-* [`noteli auth`](#noteli-auth)
+* [`noteli create`](#noteli-create)
+* [`noteli delete <ID>`](#noteli-delete-id)
 * [`noteli help [COMMAND]`](#noteli-help-command)
+* [`noteli login`](#noteli-login)
 * [`noteli logout`](#noteli-logout)
+* [`noteli read`](#noteli-read)
+* [`noteli update <ID>`](#noteli-update-id)
 * [`noteli whoami`](#noteli-whoami)
 
-## `noteli auth`
+## `noteli create`
 
-authorize the user for noteli
+create a new note
 
 ```
 USAGE
-  $ noteli auth
+  $ noteli create
 
 DESCRIPTION
-  Uses Auth0 Social Login to authorize user using browser.
+  Helps you create a fresh new Note :)
 ```
 
-_See code: [src/commands/auth.ts](https://github.com/sahilpabale/noteli/blob/v1.3.0/src/commands/auth.ts)_
+_See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/create.ts)_
+
+## `noteli delete <ID>`
+
+delete your note(s)
+
+```
+USAGE
+  $ noteli delete <ID>
+
+DESCRIPTION
+  You can delete some specific notes if you think they are not worthy.
+
+EXAMPLE
+  $ noteli delete 2
+```
+
+_See code: [src/commands/delete.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/delete.ts)_
 
 ## `noteli help [COMMAND]`
 
@@ -68,6 +89,20 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
+## `noteli login`
+
+login the user for noteli
+
+```
+USAGE
+  $ noteli login
+
+DESCRIPTION
+  Uses Auth0 Social Login to authorize user using browser.
+```
+
+_See code: [src/commands/login.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/login.ts)_
+
 ## `noteli logout`
 
 logout the user from noteli
@@ -80,7 +115,43 @@ DESCRIPTION
   Revokes the token and logs out user from system.
 ```
 
-_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.3.0/src/commands/logout.ts)_
+_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/logout.ts)_
+
+## `noteli read`
+
+read all your notes
+
+```
+USAGE
+  $ noteli read
+  $ noteli read <ID>
+
+DESCRIPTION
+  You can read all your notes or some specific note too.
+
+EXAMPLES
+  $ noteli read
+  $ noteli read 2
+```
+
+_See code: [src/commands/read.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/read.ts)_
+
+## `noteli update <ID>`
+
+update your note(s)
+
+```
+USAGE
+  $ noteli update <ID>
+
+DESCRIPTION
+  You can update some specific notes if you think they need some change.
+
+EXAMPLE
+  $ noteli update 2
+```
+
+_See code: [src/commands/update.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/update.ts)_
 
 ## `noteli whoami`
 
@@ -94,5 +165,5 @@ DESCRIPTION
   Checks for the token and verifies with Auth0 for authencticity.
 ```
 
-_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.3.0/src/commands/whoami.ts)_
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.4.0/src/commands/whoami.ts)_
 <!-- commandsstop -->
