@@ -7,19 +7,23 @@ import axios from "axios";
 const api = "https://noteli-api.sahilpabale.me/api";
 
 export default class TokenConfig {
-  async setToken(token: string, isWindows: boolean): Promise<void> {
+  async setToken(
+    token: string,
+    email: string,
+    isWindows: boolean
+  ): Promise<void> {
     if (isWindows) {
       try {
         const tokenLoc = path.join(os.homedir(), "\\.noteli");
 
         if (await this.checkFile(tokenLoc)) {
           // file exists, now set the token!
-          fs.writeFileSync(tokenLoc, token);
+          fs.writeFileSync(tokenLoc, `${token}/${email}`);
 
           console.log(chalk.greenBright("\nToken added successfully!"));
         } else {
           // create file and set the token!
-          fs.writeFileSync(tokenLoc, token);
+          fs.writeFileSync(tokenLoc, `${token}/${email}`);
 
           console.log(chalk.greenBright("\nToken added successfully!"));
         }
@@ -32,11 +36,11 @@ export default class TokenConfig {
 
         if (await this.checkFile(tokenLoc)) {
           // file exists, now set the token!
-          fs.writeFileSync(tokenLoc, token);
+          fs.writeFileSync(tokenLoc, `${token}/${email}`);
           console.log(chalk.greenBright("\nToken added successfully!"));
         } else {
           // create file and set the token!
-          fs.writeFileSync(tokenLoc, token);
+          fs.writeFileSync(tokenLoc, `${token}/${email}`);
           console.log(chalk.greenBright("\nToken added successfully!"));
         }
       } catch (error) {
@@ -90,7 +94,9 @@ export default class TokenConfig {
       try {
         const tokenLoc = path.join(os.homedir(), "\\.noteli");
         const data = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
-        return data;
+        const token = data.split("/")[0];
+        const email = data.split("/")[1];
+        return { token, email };
       } catch (error) {
         return null;
       }
@@ -98,7 +104,9 @@ export default class TokenConfig {
       try {
         const tokenLoc = path.join(os.homedir(), "/.noteli");
         const data = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
-        return data;
+        const token = data.split("/")[0];
+        const email = data.split("/")[1];
+        return { token, email };
       } catch (error) {
         return error;
       }

@@ -6,21 +6,30 @@ import * as express from "express";
 import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
+import pingServer from "../utils/pingServer";
 const figchalk = require("figchalk");
 
 const tokenConfig = new TokenConfig();
+
 const api = "https://noteli-api.sahilpabale.me/api";
 
-export class Auth extends Command {
-  static description = `authorize the user for noteli
+export class Login extends Command {
+  static description = `login the user for noteli
 Uses Auth0 Social Login to authorize user using browser.`;
+
+  async init() {
+    if (!(await pingServer())) {
+      this.warn("We are having some server issues! Just hold on!");
+      this.exit(0);
+    }
+  }
 
   private async authorize() {
     inquirer
       .prompt({
         name: "authorize",
         type: "confirm",
-        message: "Would you like us to open browser for authentication?",
+        message: "Would you like us to open browser to login?",
         default: true,
       })
       .then(async (answer) => {
@@ -44,7 +53,7 @@ Uses Auth0 Social Login to authorize user using browser.`;
 
             app.get("/callback", (req: Request, res: Response) => {
               resolve(req.query.code);
-              res.redirect("https://noteli-client.vercel.app/done");
+              res.redirect("https://noteli.tech/done");
             });
 
             const authUrl = authAPI.data["url"];
@@ -58,14 +67,20 @@ Uses Auth0 Social Login to authorize user using browser.`;
 
             const access_token = response.data.token;
 
-            await tokenConfig.setToken(access_token, this.config.windows);
+            const user = await tokenConfig.getUser(access_token);
+
+            await tokenConfig.setToken(
+              access_token,
+              user.email,
+              this.config.windows
+            );
 
             server.close();
-            const user = await tokenConfig.getUser(access_token);
+
             this.log(
               "Logged in successfully as " + chalk.greenBright(user.email)
             );
-            process.exit(0);
+            this.exit(0);
           } catch (error) {
             this.log(error.response);
           }
@@ -82,12 +97,12 @@ Uses Auth0 Social Login to authorize user using browser.`;
   async run() {
     tokenConfig
       .getToken(this.config.windows)
-      .then(async (token) => {
-        if (token == "") {
+      .then(async (data) => {
+        if (data.token == "") {
           await this.authorize();
         } else {
           tokenConfig
-            .getUser(token)
+            .getUser(data.token)
             .then(async (user) => {
               if (user != null) {
                 this.log(chalk.yellow("An account already exists!"));

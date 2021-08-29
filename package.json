@@ -16,12 +16,9 @@
     "axios": "^0.21.1",
     "chalk": "^4.1.2",
     "cli-ux": "^5.6.3",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "figchalk": "^1.0.3",
-    "figlet": "^1.5.2",
     "inquirer": "^8.1.2",
-    "mongoose": "^5.13.7",
     "node-notifier": "^10.0.0",
     "open": "^8.2.1",
     "tslib": "^1.14.1"
@@ -81,7 +78,6 @@
     "build": "rimraf lib && tsc --build",
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "rimraf lib && tsc --build && oclif-dev manifest && oclif-dev readme",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts"

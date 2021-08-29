@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const figchalk = require("figchalk");
-require("dotenv").config();
 
 console.log(figchalk.mix("N o t e l i", "redBright"));
 
