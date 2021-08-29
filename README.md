@@ -21,7 +21,7 @@ $ npm install -g noteli
 $ noteli COMMAND
 running command...
 $ noteli (-v|--version|version)
-noteli/1.4.1 win32-x64 node-v14.16.1
+noteli/1.5.0 win32-x64 node-v14.16.1
 $ noteli --help [COMMAND]
 USAGE
   $ noteli COMMAND
@@ -53,7 +53,7 @@ DESCRIPTION
   Helps you create a fresh new Note :)
 ```
 
-_See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/create.ts)_
 
 ## `noteli delete <ID>`
 
@@ -70,7 +70,7 @@ EXAMPLE
   $ noteli delete 2
 ```
 
-_See code: [src/commands/delete.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/delete.ts)_
+_See code: [src/commands/delete.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/delete.ts)_
 
 ## `noteli help [COMMAND]`
 
@@ -101,7 +101,7 @@ DESCRIPTION
   Uses Auth0 Social Login to authorize user using browser.
 ```
 
-_See code: [src/commands/login.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/login.ts)_
 
 ## `noteli logout`
 
@@ -115,7 +115,7 @@ DESCRIPTION
   Revokes the token and logs out user from system.
 ```
 
-_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/logout.ts)_
+_See code: [src/commands/logout.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/logout.ts)_
 
 ## `noteli read`
 
@@ -134,7 +134,7 @@ EXAMPLES
   $ noteli read 2
 ```
 
-_See code: [src/commands/read.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/read.ts)_
+_See code: [src/commands/read.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/read.ts)_
 
 ## `noteli update <ID>`
 
@@ -151,7 +151,7 @@ EXAMPLE
   $ noteli update 2
 ```
 
-_See code: [src/commands/update.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/update.ts)_
+_See code: [src/commands/update.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/update.ts)_
 
 ## `noteli whoami`
 
@@ -165,5 +165,5 @@ DESCRIPTION
   Checks for the token and verifies with Auth0 for authencticity.
 ```
 
-_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.4.1/src/commands/whoami.ts)_
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.5.0/src/commands/whoami.ts)_
 <!-- commandsstop -->
