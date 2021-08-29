@@ -64,6 +64,10 @@ You can delete some specific notes if you think they are not worthy.`;
                   this.warn("Failed to parse your note.");
                   process.exit(0);
                 }
+                if (error.response.data.authError) {
+                  this.warn("You are not authenticated!");
+                  process.exit(0);
+                }
               }
             }
           })
