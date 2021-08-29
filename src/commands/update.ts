@@ -131,7 +131,11 @@ You can update some specific notes if you think they need some change.`;
                 process.exit(0);
               }
               if (error.response.data.parseError) {
-                this.warn("Failed to parse your note.");
+                this.warn("Please provide a valid ID!");
+                process.exit(0);
+              }
+              if (error.response.data.authError) {
+                this.warn("You are not authenticated!");
                 process.exit(0);
               }
             }
