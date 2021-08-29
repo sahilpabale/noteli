@@ -1,7 +1,7 @@
 {
   "name": "noteli",
   "description": "A CLI based Notes App built using TypeScript, MongoDB and Auth0.",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "author": "sahilpabale @sahilpabale",
   "bin": {
     "noteli": "./bin/run"
