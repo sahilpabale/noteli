@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
-const figchalk = require("figchalk");
+if (process.argv.slice(2).length == 0) {
+  const figchalk = require("figchalk");
 
-console.log(figchalk.mix("N o t e l i", "redBright"));
+  console.log(figchalk.mix("N o t e l i", "redBright"));
+}
 
 require("@oclif/command")
   .run()
