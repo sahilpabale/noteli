@@ -4,7 +4,7 @@ import chalk = require("chalk");
 import pingServer from "../utils/pingServer";
 import TokenConfig from "../utils/TokenConfig";
 
-const api = "https://noteli-api.sahilpabale.me/api";
+const { api } = require("../../package.json");
 
 export class Delete extends Command {
   static description = `delete your note(s)
@@ -19,7 +19,7 @@ You can delete some specific notes if you think they are not worthy.`;
   async init() {
     if (!(await pingServer())) {
       this.warn("We are having some server issues! Just hold on!");
-      this.exit(0);
+      process.exit(0);
     }
   }
 
@@ -30,46 +30,45 @@ You can delete some specific notes if you think they are not worthy.`;
       const id = args.id;
 
       if (id == null) {
-        this.warn("Please provide note's ID in argument!");
+        this.warn("Please provide an ID in argument!");
       } else {
         new TokenConfig()
           .getToken(this.config.windows)
-          .then(async (data) => {
-            if (data == null) {
+          .then(async (token) => {
+            if (token == null) {
               this.warn(
                 "You are not authorized to use this command!\n" +
                   chalk.green("Use $ note login to authorize")
               );
             } else {
-              const token = `${data.token}/${data.email}`;
+              try {
+                const response = await axios.delete(`${api}/note/${id}`, {
+                  headers: { Authorization: `Bearer ${token}` },
+                });
 
-              const response = await axios.delete(`${api}/note/${id}`, {
-                headers: { Authorization: `Bearer ${token}` },
-              });
-
-              if (!response.data.isError) {
                 // deleted
                 this.log(chalk.green("Sad to see you deleting your Note :(\n"));
                 this.log(
                   "But nevermind, note-taking is a good habit! Don’t leave that..."
                 );
-              } else {
-                this.log(response.data);
+              } catch (error) {
+                if (error.response == undefined) {
+                  this.warn("We are having some server issues! Just hold on!");
+                  process.exit(0);
+                }
+                if (error.response.data.idError) {
+                  this.warn("Couldn't find your note! Provide a valid ID.");
+                  process.exit(0);
+                }
+                if (error.response.data.noteError) {
+                  this.warn("Failed to parse your note.");
+                  process.exit(0);
+                }
               }
             }
           })
           .catch((error) => {
-            if (error.response == undefined) {
-              this.warn("We are having some server issues! Just hold on!");
-              this.exit(0);
-            }
-            if (error.response.data.idError) {
-              this.warn("Please provide a valid ID!");
-              this.exit(0);
-            }
-            if (error.response.data.serverError) {
-              this.error("We are having some server issues! Just hold on!");
-            }
+            this.log(error);
           });
       }
     } catch (error) {

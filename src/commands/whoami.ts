@@ -21,8 +21,8 @@ Checks for the token and verifies with Auth0 for authencticity.`;
     try {
       tokenConfig
         .getToken(this.config.windows)
-        .then(async (data) => {
-          if (data.token == null) {
+        .then(async (token) => {
+          if (token == null) {
             this.log(
               `${chalk.yellowBright(
                 "You aren't authorized yet!"
@@ -31,7 +31,7 @@ Checks for the token and verifies with Auth0 for authencticity.`;
           } else {
             ux.action.start(chalk.yellow("Fetching your account"), "loading");
             tokenConfig
-              .getUser(data.token)
+              .getUser(token)
               .then(async (user) => {
                 if (user != null) {
                   ux.action.stop(
@@ -49,7 +49,7 @@ Checks for the token and verifies with Auth0 for authencticity.`;
                   );
                 }
               })
-              .catch(async (err) => {
+              .catch(async () => {
                 this.log(
                   `${chalk.yellowBright(
                     "You aren't authorized yet!"
@@ -58,7 +58,7 @@ Checks for the token and verifies with Auth0 for authencticity.`;
               });
           }
         })
-        .catch(async (err) => {
+        .catch(async () => {
           this.log(
             `${chalk.yellowBright(
               "You aren't authorized yet!"

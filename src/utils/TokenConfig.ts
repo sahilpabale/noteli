@@ -4,26 +4,22 @@ import * as chalk from "chalk";
 import * as os from "os";
 import axios from "axios";
 
-const api = "https://noteli-api.sahilpabale.me/api";
+const { api } = require("../../package.json");
 
 export default class TokenConfig {
-  async setToken(
-    token: string,
-    email: string,
-    isWindows: boolean
-  ): Promise<void> {
+  async setToken(token: string, isWindows: boolean): Promise<void> {
     if (isWindows) {
       try {
         const tokenLoc = path.join(os.homedir(), "\\.noteli");
 
         if (await this.checkFile(tokenLoc)) {
           // file exists, now set the token!
-          fs.writeFileSync(tokenLoc, `${token}/${email}`);
+          fs.writeFileSync(tokenLoc, `${token}`);
 
           console.log(chalk.greenBright("\nToken added successfully!"));
         } else {
           // create file and set the token!
-          fs.writeFileSync(tokenLoc, `${token}/${email}`);
+          fs.writeFileSync(tokenLoc, `${token}`);
 
           console.log(chalk.greenBright("\nToken added successfully!"));
         }
@@ -36,11 +32,11 @@ export default class TokenConfig {
 
         if (await this.checkFile(tokenLoc)) {
           // file exists, now set the token!
-          fs.writeFileSync(tokenLoc, `${token}/${email}`);
+          fs.writeFileSync(tokenLoc, `${token}`);
           console.log(chalk.greenBright("\nToken added successfully!"));
         } else {
           // create file and set the token!
-          fs.writeFileSync(tokenLoc, `${token}/${email}`);
+          fs.writeFileSync(tokenLoc, `${token}`);
           console.log(chalk.greenBright("\nToken added successfully!"));
         }
       } catch (error) {
@@ -57,13 +53,13 @@ export default class TokenConfig {
         if (await this.checkFile(tokenLoc)) {
           fs.unlink(tokenLoc, (err) => {
             if (err) {
-              console.log(chalk.redBright("Failed to log out!"));
+              console.log(chalk.redBright("\nFailed to log out!"));
             } else {
-              console.log(chalk.greenBright("Successfully logged out!"));
+              console.log(chalk.greenBright("\nSuccessfully logged out!"));
             }
           });
         } else {
-          console.log(chalk.greenBright("Successfully logged out!"));
+          console.log(chalk.greenBright("\nSuccessfully logged out!"));
         }
       } catch (error) {
         console.log(chalk.redBright(error));
@@ -75,13 +71,13 @@ export default class TokenConfig {
         if (await this.checkFile(tokenLoc)) {
           fs.unlink(tokenLoc, (err) => {
             if (err) {
-              console.log(chalk.redBright("Failed to log out!"));
+              console.log(chalk.redBright("\nFailed to log out!"));
             } else {
-              console.log(chalk.greenBright("Successfully logged out!"));
+              console.log(chalk.greenBright("\nSuccessfully logged out!"));
             }
           });
         } else {
-          console.log(chalk.greenBright("Successfully logged out!"));
+          console.log(chalk.greenBright("\nSuccessfully logged out!"));
         }
       } catch (error) {
         console.log(chalk.redBright(error));
@@ -93,20 +89,18 @@ export default class TokenConfig {
     if (isWindows) {
       try {
         const tokenLoc = path.join(os.homedir(), "\\.noteli");
-        const data = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
-        const token = data.split("/")[0];
-        const email = data.split("/")[1];
-        return { token, email };
+        const token = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
+
+        return token;
       } catch (error) {
         return null;
       }
     } else {
       try {
         const tokenLoc = path.join(os.homedir(), "/.noteli");
-        const data = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
-        const token = data.split("/")[0];
-        const email = data.split("/")[1];
-        return { token, email };
+        const token = fs.readFileSync(tokenLoc, { encoding: "utf-8" });
+
+        return token;
       } catch (error) {
         return error;
       }

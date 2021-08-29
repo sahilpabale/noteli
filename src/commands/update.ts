@@ -5,7 +5,7 @@ import inquirer = require("inquirer");
 import pingServer from "../utils/pingServer";
 import TokenConfig from "../utils/TokenConfig";
 
-const api = "https://noteli-api.sahilpabale.me/api";
+const { api } = require("../../package.json");
 
 export class Update extends Command {
   static description = `update your note(s)
@@ -20,7 +20,7 @@ You can update some specific notes if you think they need some change.`;
   async init() {
     if (!(await pingServer())) {
       this.warn("We are having some server issues! Just hold on!");
-      this.exit(0);
+      process.exit(0);
     }
   }
 
@@ -46,8 +46,8 @@ You can update some specific notes if you think they need some change.`;
       .then(async (answers) => {
         let data;
         if (answers.content == "" && answers.title == "") {
-          this.log("You have nothing to update :(");
-          this.exit(0);
+          this.warn("You have nothing to update :(");
+          process.exit(0);
         } else if (answers.content == "") {
           // update title
           data = { title: answers.title };
@@ -69,19 +69,19 @@ You can update some specific notes if you think they need some change.`;
         } catch (error) {
           if (error.response == undefined) {
             this.warn("We are having some server issues! Just hold on!");
-            this.exit(0);
+            process.exit(0);
           }
           if (error.response.data.idError) {
             this.warn("Please provide a valid ID!");
-            this.exit(0);
+            process.exit(0);
           }
           if (error.response.data.serverError) {
             this.warn("Something's wrong on our side!");
-            this.exit(0);
+            process.exit(0);
           }
           if (error.response.data.noteError) {
             this.warn("Failed to parse your note!");
-            this.exit(0);
+            process.exit(0);
           }
         }
       })
@@ -94,16 +94,14 @@ You can update some specific notes if you think they need some change.`;
     try {
       new TokenConfig()
         .getToken(this.config.windows)
-        .then(async (data) => {
-          if (data == null) {
+        .then(async (token) => {
+          if (token == null) {
             this.warn(
               "You are not authorized to use this command!\n" +
                 chalk.green("Use $ note login to authorize")
             );
           } else {
             try {
-              const token = `${data.token}/${data.email}`;
-
               const response = await axios.get(`${api}/note/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
               });
@@ -122,19 +120,19 @@ You can update some specific notes if you think they need some change.`;
             } catch (error) {
               if (error.response == undefined) {
                 this.warn("We are having some server issues! Just hold on!");
-                this.exit(0);
+                process.exit(0);
               }
               if (error.response.data.idError) {
                 this.warn("Couldn't find your note! Provide a valid ID.");
-                this.exit(0);
+                process.exit(0);
               }
               if (error.response.data.noteError) {
                 this.warn("Failed to parse your note.");
-                this.exit(0);
+                process.exit(0);
               }
               if (error.response.data.parseError) {
                 this.warn("Failed to parse your note.");
-                this.exit(0);
+                process.exit(0);
               }
             }
           }
@@ -162,7 +160,6 @@ You can update some specific notes if you think they need some change.`;
         this.warn("We are having some server issues! Just hold on!");
         this.exit(0);
       }
-      this.log(error);
     }
   }
 }

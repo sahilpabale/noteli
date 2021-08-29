@@ -5,7 +5,7 @@ import ux from "cli-ux";
 import pingServer from "../utils/pingServer";
 import TokenConfig from "../utils/TokenConfig";
 
-const api = "https://noteli-api.sahilpabale.me/api";
+const { api } = require("../../package.json");
 
 export class Read extends Command {
   static description = `read all your notes
@@ -25,34 +25,54 @@ You can read all your notes or some specific note too.`;
   static examples = ["$ noteli read", "$ noteli read 2"];
 
   readAllNotes = async () => {
-    ux.action.start(chalk.yellowBright("Fetching your notes"));
-
     try {
       new TokenConfig()
         .getToken(this.config.windows)
-        .then(async (data) => {
-          const token = `${data.token}/${data.email}`;
+        .then(async (token) => {
+          if (token == null) {
+            this.warn(
+              "You are not authorized to use this command!\n" +
+                chalk.green("Use $ note login to authorize")
+            );
+          } else {
+            try {
+              ux.action.start(chalk.blueBright("Fetching your notes"));
 
-          const response = await axios.get(`${api}/notes`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+              const response = await axios.get(`${api}/notes`, {
+                headers: { Authorization: `Bearer ${token}` },
+              });
 
-          ux.action.stop("\n");
+              ux.action.stop("\n");
 
-          let note;
+              let note;
 
-          this.log(chalk.bold(chalk.blueBright("ID\tNote Title")));
+              this.log(chalk.bold(chalk.blueBright("ID\tNote Title")));
 
-          for (let i = 0; i < response.data.data.length; i++) {
-            note = response.data.data[i];
-            this.log(chalk.greenBright("#" + note.noteId + "\t" + note.title));
+              for (let i = 0; i < response.data.data.length; i++) {
+                note = response.data.data[i];
+                this.log(
+                  chalk.greenBright("#" + note.noteId + "\t" + note.title)
+                );
+              }
+
+              this.log(
+                `\nTo grab specific note, just run\n${chalk.green(
+                  "$ noteli read <ID>"
+                )}`
+              );
+            } catch (error) {
+              if (error.response.data.notesError) {
+                ux.action.stop(
+                  chalk.yellow("\n\nYou haven't created any notes!")
+                );
+                this.log(
+                  `Use ${chalk.greenBright(
+                    "$ noteli create"
+                  )} to create your first note!`
+                );
+              }
+            }
           }
-
-          this.log(
-            `\nTo grab specific note, just run\n${chalk.green(
-              "$ noteli read <ID>"
-            )}`
-          );
         })
         .catch((err) => {
           this.log(err);
@@ -66,25 +86,17 @@ You can read all your notes or some specific note too.`;
     try {
       new TokenConfig()
         .getToken(this.config.windows)
-        .then(async (data) => {
-          if (data == null) {
+        .then(async (token) => {
+          if (token == null) {
             this.warn(
               "You are not authorized to use this command!\n" +
                 chalk.green("Use $ note login to authorize")
             );
           } else {
             try {
-              const token = `${data.token}/${data.email}`;
-
               const response = await axios.get(`${api}/note/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
               });
-
-              // error handling
-              if (response.data.idError) {
-                this.warn("Please provide a valid ID!");
-                this.exit(0);
-              }
 
               const note = response.data.data;
 
@@ -98,27 +110,25 @@ You can read all your notes or some specific note too.`;
             } catch (error) {
               if (error.response == undefined) {
                 this.warn("We are having some server issues! Just hold on!");
-                this.exit(0);
+                process.exit(0);
+              }
+              if (error.response.data.authError) {
+                this.warn("You are not authenticated!");
+                process.exit(0);
+              }
+              if (error.response.data.idError) {
+                this.warn("You have provided wrong ID!");
+                process.exit(0);
+              }
+              if (error.response.data.parseError) {
+                this.warn("Please provide a valid ID!");
+                process.exit(0);
               }
             }
           }
         })
         .catch((error) => {
-          if (error.response == undefined) {
-            this.warn("We are having some server issues! Just hold on!");
-            this.exit(0);
-          }
-          if (error.response.data.idError) {
-            this.warn("Please provide a valid ID!");
-            this.exit(0);
-          }
-          if (error.response.data.serverError) {
-            this.error("We are having some server issues! Just hold on!");
-          }
-          if (error.response.data.noteError) {
-            this.warn("Failed to parse your note!");
-            this.exit(0);
-          }
+          this.log(error);
         });
     } catch (error) {
       this.log(error);

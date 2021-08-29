@@ -7,11 +7,10 @@ import { Application, Request, Response } from "express";
 import * as open from "open";
 import TokenConfig from "../utils/TokenConfig";
 import pingServer from "../utils/pingServer";
-const figchalk = require("figchalk");
 
 const tokenConfig = new TokenConfig();
 
-const api = "https://noteli-api.sahilpabale.me/api";
+const { api } = require("../../package.json");
 
 export class Login extends Command {
   static description = `login the user for noteli
@@ -20,7 +19,7 @@ Uses Auth0 Social Login to authorize user using browser.`;
   async init() {
     if (!(await pingServer())) {
       this.warn("We are having some server issues! Just hold on!");
-      this.exit(0);
+      process.exit(0);
     }
   }
 
@@ -69,16 +68,12 @@ Uses Auth0 Social Login to authorize user using browser.`;
 
             const user = await tokenConfig.getUser(access_token);
 
-            await tokenConfig.setToken(
-              access_token,
-              user.email,
-              this.config.windows
-            );
+            await tokenConfig.setToken(access_token, this.config.windows);
 
             server.close();
 
             this.log(
-              "Logged in successfully as " + chalk.greenBright(user.email)
+              "\nLogged in successfully as " + chalk.greenBright(user.email)
             );
             this.exit(0);
           } catch (error) {
@@ -97,15 +92,15 @@ Uses Auth0 Social Login to authorize user using browser.`;
   async run() {
     tokenConfig
       .getToken(this.config.windows)
-      .then(async (data) => {
-        if (data.token == "") {
+      .then(async (token) => {
+        if (token == "") {
           await this.authorize();
         } else {
           tokenConfig
-            .getUser(data.token)
+            .getUser(token)
             .then(async (user) => {
               if (user != null) {
-                this.log(chalk.yellow("An account already exists!"));
+                this.log(chalk.yellow("\nAn account already exists!"));
                 this.log("Logged in as " + chalk.greenBright(user.email));
               } else {
                 await this.authorize();

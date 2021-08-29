@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = "https://noteli-api.sahilpabale.me/api";
+const { api } = require("../../package.json");
 
 const pingServer = async (): Promise<boolean> => {
   try {
