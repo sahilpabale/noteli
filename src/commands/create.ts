@@ -65,7 +65,11 @@ Helps you create a fresh new Note :)`;
                 },
               });
 
-              this.log("created note!");
+              this.log(
+                `Successfully created your note with ${chalk.greenBright(
+                  `ID #${response.data.data.noteId}`
+                )}`
+              );
             } catch (error) {
               if (error.response == undefined) {
                 this.warn("We are having some server issues! Just hold on!");
