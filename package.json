@@ -6,7 +6,7 @@
   "bin": {
     "noteli": "./bin/run"
   },
-  "api": "http://localhost:8080/api",
+  "api": "https://noteli-api.sahilpabale.me/api",
   "bugs": "https://github.com/sahilpabale/noteli/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
