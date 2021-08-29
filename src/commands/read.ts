@@ -71,6 +71,12 @@ You can read all your notes or some specific note too.`;
                   )} to create your first note!`
                 );
               }
+              if (error.response.data.authError) {
+                ux.action.stop(chalk.yellow("\n\nYou aren't authorized!"));
+                this.log(
+                  `Use ${chalk.greenBright("$ noteli login")} to login!`
+                );
+              }
             }
           }
         })
