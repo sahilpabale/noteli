@@ -20,7 +20,7 @@ Revokes the token and logs out user from system.`;
     try {
       // call logout api
       open(
-        `https://sahilpabale.us.auth0.com/v2/logout?client_id=lkQ1zyXdfFwI8019STfP259Jb37IoaI7`
+        "https://sahilpabale.us.auth0.com/v2/logout?client_id=lkQ1zyXdfFwI8019STfP259Jb37IoaI7"
       );
 
       // remove token

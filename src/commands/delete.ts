@@ -38,7 +38,7 @@ You can delete some specific notes if you think they are not worthy.`;
             if (token == null) {
               this.warn(
                 "You are not authorized to use this command!\n" +
-                  chalk.green("Use $ note login to authorize")
+                                chalk.green("Use $ note login to authorize")
               );
             } else {
               try {
@@ -51,7 +51,7 @@ You can delete some specific notes if you think they are not worthy.`;
                 this.log(
                   "But nevermind, note-taking is a good habit! Don’t leave that..."
                 );
-              } catch (error) {
+              } catch (error: any) {
                 if (error.response == undefined) {
                   this.warn("We are having some server issues! Just hold on!");
                   process.exit(0);
@@ -75,7 +75,7 @@ You can delete some specific notes if you think they are not worthy.`;
             this.log(error);
           });
       }
-    } catch (error) {
+    } catch (error: any) {
       this.log(error);
     }
   }

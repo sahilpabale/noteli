@@ -4,7 +4,7 @@ import * as chalk from "chalk";
 import * as os from "os";
 import axios from "axios";
 
-const { api } = require("../../package.json");
+import { api } from "../../package.json";
 
 export default class TokenConfig {
   async setToken(token: string, isWindows: boolean): Promise<void> {

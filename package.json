@@ -35,7 +35,11 @@
     "@types/mocha": "^5.2.7",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^10.17.60",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
     "chai": "^4.3.4",
+    "eslint": "^8.1.0",
+    "eslint-plugin-react": "^7.26.1",
     "globby": "^10.0.2",
     "mocha": "^5.2.0",
     "nyc": "^14.1.1",
@@ -77,9 +81,13 @@
   },
   "scripts": {
     "build": "rimraf lib && tsc --build",
+    "lint": "eslint \"./**\"",
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "rimraf lib && tsc --build && oclif-dev manifest && oclif-dev readme",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "eslintConfig": {
+    "extends": "eslint:recommended"
+  }
 }
