@@ -109,11 +109,11 @@ You can update some specific notes if you think they need some change.`;
               const note = response.data.data;
 
               this.log(
-                `${chalk.blueBright(`Title: `)}${chalk.green(note.title)}\n`
+                `${chalk.blueBright("Title: ")}${chalk.green(note.title)}\n`
               );
 
               this.log(
-                `${chalk.blueBright(`Content: `)}${chalk.green(note.content)}\n`
+                `${chalk.blueBright("Content: ")}${chalk.green(note.content)}\n`
               );
 
               await this.updateNote(id, token);
