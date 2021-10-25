@@ -86,5 +86,8 @@
     "prepack": "rimraf lib && tsc --build && oclif-dev manifest && oclif-dev readme",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "eslintConfig": {
+    "extends": "eslint:recommended"
+  }
 }
