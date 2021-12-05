@@ -1,4 +1,4 @@
-# noteli-cli
+# noteli
 
 A CLI based Notes App built using TypeScript, MongoDB and Auth0.
 
