@@ -1,6 +1,8 @@
 # noteli
 
-A CLI based Notes App built using TypeScript, MongoDB and Auth0.
+# What is Noetli
+Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The CLI based application
+is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/noteli.svg)](https://npmjs.org/package/noteli)
@@ -8,6 +10,8 @@ A CLI based Notes App built using TypeScript, MongoDB and Auth0.
 [![License](https://img.shields.io/npm/l/noteli.svg)](https://github.com/sahilpabale/noteli/blob/master/package.json)
 
 <!-- toc -->
+## _**Table of Contents**_
+* [What is Noetli](#whatisnoteli)
 * [noteli](#noteli)
 * [Usage](#usage)
 * [Commands](#commands)
