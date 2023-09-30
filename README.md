@@ -33,14 +33,17 @@ noteli/1.5.4 win32-x64 node-v14.16.1
 <!-- usagestop -->
 
 # Tutorial
-Steps to create your first note      
-1. Login via login command(#noteli-create)
-2. Create a note(name, contents, and id) with create command
-3. Edit/update/read note based off respective command
-4. Logout via logout command
-
-
-For a step by step tutorial on installation guide, login/logout, how to create/edit your first note, etc. please visit the following [link](https://www.youtube.com/watch?v=GjddqepNroo)
+For a step by step tutorial on noteli please visit the following [link](https://www.youtube.com/watch?v=GjddqepNroo)        
+The following functionality is demoed in the video
+- How to install noteli in CLI
+- How to login using credentials
+- How to verify I am logged in
+- How to create a note(title, content, id)
+- How to read my note
+- How to edit my note
+- How to delete a note
+- How to view all my notes
+- How to logout
 
 # Commands
 
