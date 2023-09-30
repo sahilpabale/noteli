@@ -20,12 +20,12 @@ You will need to install Node.js before being able to download and run the notel
 Steps: 
 1. Download [Node.js installer](https://nodejs.org/en/download) from link based off specifications of your computer
 2. Install Node.js using the installer(Choose desired path of install and make sure npm package manager is present of features screen before installing)
-Then use the following command to download noteli:
+3. Then use the following command to download noteli:
 <!-- usage -->
 ```sh-session
 $ npm install -g noteli
 ```
-Confirm the succesful download with the following command:
+4. Confirm the succesful download with the following command:
 ```sh-session
 $ noteli (-v|--version|version)
 noteli/1.5.4 win32-x64 node-v14.16.1
