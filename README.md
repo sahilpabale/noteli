@@ -1,7 +1,7 @@
 # noteli
 
 # What is Noetli
-Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The application runs completley on the CLI. It is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication.
+Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The application runs completley on the CLI. It is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication. You can utilize a google, facebook, and/or microsoft account to store and maintain your notes.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/noteli.svg)](https://npmjs.org/package/noteli)
@@ -13,6 +13,7 @@ Noetli is a transformative notes application for all of your note-taking needs i
 * [noteli](#noteli)
 * [What is Noetli](#whatisnoteli)
 * [Installation](#Installation)
+* [Tutorial](#Tutorial)
 * [Commands](#commands)
 <!-- tocstop -->
 
@@ -30,6 +31,16 @@ noteli/1.5.4 win32-x64 node-v14.16.1
 ...
 ```
 <!-- usagestop -->
+
+# Tutorial
+Steps to create your first note      
+1. Login via login command(#noteli-create)
+2. Create a note(name, contents, and id) with create command
+3. Edit/update/read note based off respective command
+4. Logout via logout command
+
+
+For a step by step tutorial on installation guide, login/logout, how to create/edit your first note, etc. please visit the following [link](https://www.youtube.com/watch?v=GjddqepNroo)
 
 # Commands
 
