@@ -1,8 +1,7 @@
 # noteli
 
 # What is Noetli
-Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The CLI based application
-is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication.
+Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The application runs completley on the CLI. It is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/noteli.svg)](https://npmjs.org/package/noteli)
@@ -11,24 +10,23 @@ is built using TypeScript for its User Interface, MongoDB for its backend databa
 
 <!-- toc -->
 ## _**Table of Contents**_
-* [What is Noetli](#whatisnoteli)
 * [noteli](#noteli)
-* [Usage](#usage)
+* [What is Noetli](#whatisnoteli)
+* [Installation](#Installation)
 * [Commands](#commands)
 <!-- tocstop -->
 
-# Usage
-
+# Installation
+You will need to install [Node.js](https://nodejs.org/en/download) before being able to download run the noteli application.
+Then use the following command to download noteli:
 <!-- usage -->
 ```sh-session
 $ npm install -g noteli
-$ noteli COMMAND
-running command...
+```
+Confirm the succesful download with the following command:
+```sh-session
 $ noteli (-v|--version|version)
 noteli/1.5.4 win32-x64 node-v14.16.1
-$ noteli --help [COMMAND]
-USAGE
-  $ noteli COMMAND
 ...
 ```
 <!-- usagestop -->
