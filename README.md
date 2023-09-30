@@ -1,24 +1,22 @@
-# noteli
+## _**Table of Contents**_
+* [What is Noetli](#whatisnoteli)
+* [Installation](#Installation)
+* [Tutorial](#Tutorial)
+* [Commands](#commands)
 
-# What is Noetli
-Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The application runs completley on the CLI. It is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication. You can utilize a google, facebook, and/or microsoft account to store and maintain your notes.
+# What is noetli
+Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The application runs completley on the CLI to interact with the user. You can now take notes quickly from the shell without wasting time through GUI. It is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication. You can utilize a google, facebook, and/or microsoft account to store and maintain your notes. 
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/noteli.svg)](https://npmjs.org/package/noteli)
 [![Downloads/week](https://img.shields.io/npm/dw/noteli.svg)](https://npmjs.org/package/noteli)
 [![License](https://img.shields.io/npm/l/noteli.svg)](https://github.com/sahilpabale/noteli/blob/master/package.json)
 
-<!-- toc -->
-## _**Table of Contents**_
-* [noteli](#noteli)
-* [What is Noetli](#whatisnoteli)
-* [Installation](#Installation)
-* [Tutorial](#Tutorial)
-* [Commands](#commands)
+<!-- toc --
 <!-- tocstop -->
 
 # Installation
-You will need to install [Node.js](https://nodejs.org/en/download) before being able to download run the noteli application.        
+You will need to install [Node.js](https://nodejs.org/en/download) before being able to download and run the noteli application.        
 Then use the following command to download noteli:
 <!-- usage -->
 ```sh-session
@@ -73,7 +71,7 @@ _See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v
 
 ## `noteli delete <ID>`
 
-delete your note(s)
+delete your note(s) based off the ID of that note
 
 ```
 USAGE
@@ -154,7 +152,7 @@ _See code: [src/commands/read.ts](https://github.com/sahilpabale/noteli/blob/v1.
 
 ## `noteli update <ID>`
 
-update your note(s)
+update/edit your note(s) based off that note's id
 
 ```
 USAGE
