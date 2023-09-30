@@ -1,33 +1,50 @@
-# noteli
+## _**Table of Contents**_
+* [What is Noetli](#whatisnoteli)
+* [Installation](#Installation)
+* [Tutorial](#Tutorial)
+* [Commands](#commands)
 
-A CLI based Notes App built using TypeScript, MongoDB and Auth0.
+# What is noetli
+Noetli is a transformative notes application for all of your note-taking needs including making lists, scribbling down thoughts, etc. The application runs completley on the CLI to interact with the user. You can now take notes quickly from the shell without wasting time through GUI. It is built using TypeScript for its User Interface, MongoDB for its backend database, and Auth0 for security/authentication. You can utilize a google, facebook, and/or microsoft account to store and maintain your notes. 
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/noteli.svg)](https://npmjs.org/package/noteli)
 [![Downloads/week](https://img.shields.io/npm/dw/noteli.svg)](https://npmjs.org/package/noteli)
 [![License](https://img.shields.io/npm/l/noteli.svg)](https://github.com/sahilpabale/noteli/blob/master/package.json)
 
-<!-- toc -->
-* [noteli](#noteli)
-* [Usage](#usage)
-* [Commands](#commands)
+<!-- toc --
 <!-- tocstop -->
 
-# Usage
-
+# Installation
+You will need to install Node.js before being able to download and run the noteli application.
+Steps: 
+1. Download [Node.js installer](https://nodejs.org/en/download) from link based off specifications of your computer
+2. Install Node.js using the installer(Choose desired path of install and make sure npm package manager is present of features screen before installing)
+3. Then use the following command to download noteli:
 <!-- usage -->
 ```sh-session
 $ npm install -g noteli
-$ noteli COMMAND
-running command...
-$ noteli (-v|--version|version)
+```
+4. Confirm the succesful download with the following command:
+```sh-session
+$ noteli version
 noteli/1.5.4 win32-x64 node-v14.16.1
-$ noteli --help [COMMAND]
-USAGE
-  $ noteli COMMAND
 ...
 ```
 <!-- usagestop -->
+
+# Tutorial
+For a step by step tutorial on noteli please visit the following [link](https://www.youtube.com/watch?v=GjddqepNroo)        
+The following functionality is demoed in the video
+- How to install noteli in CLI
+- How to login using credentials
+- How to verify I am logged in
+- How to create a note(title, content, id)
+- How to read my note
+- How to edit my note
+- How to delete a note
+- How to view all my notes
+- How to logout
 
 # Commands
 
@@ -40,6 +57,7 @@ USAGE
 * [`noteli read`](#noteli-read)
 * [`noteli update <ID>`](#noteli-update-id)
 * [`noteli whoami`](#noteli-whoami)
+* [`noteli version`](#noteli-version)
 
 ## `noteli create`
 
@@ -57,7 +75,7 @@ _See code: [src/commands/create.ts](https://github.com/sahilpabale/noteli/blob/v
 
 ## `noteli delete <ID>`
 
-delete your note(s)
+delete your note(s) based off the ID of that note
 
 ```
 USAGE
@@ -138,7 +156,7 @@ _See code: [src/commands/read.ts](https://github.com/sahilpabale/noteli/blob/v1.
 
 ## `noteli update <ID>`
 
-update your note(s)
+update/edit your note(s) based off that note's id
 
 ```
 USAGE
@@ -163,6 +181,19 @@ USAGE
 
 DESCRIPTION
   Checks for the token and verifies with Auth0 for authencticity.
+```
+
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.5.4/src/commands/whoami.ts)_
+
+## `noteli version`
+
+shows the current version of noteli downloaded on your computer
+```
+USAGE
+  $ noteli (-v|--version|version)
+
+DESCRIPTION
+  Verifies the version of noteli
 ```
 
 _See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.5.4/src/commands/whoami.ts)_
