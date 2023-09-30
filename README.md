@@ -16,7 +16,10 @@ Noetli is a transformative notes application for all of your note-taking needs i
 <!-- tocstop -->
 
 # Installation
-You will need to install [Node.js](https://nodejs.org/en/download) before being able to download and run the noteli application.        
+You will need to install Node.js before being able to download and run the noteli application.
+Steps: 
+1. Download [Node.js installer](https://nodejs.org/en/download) from link based off specifications of your computer
+2. Install Node.js using the installer(Choose desired path of install and make sure npm package manager is present of features screen before installing)
 Then use the following command to download noteli:
 <!-- usage -->
 ```sh-session
