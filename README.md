@@ -27,7 +27,7 @@ $ npm install -g noteli
 ```
 4. Confirm the succesful download with the following command:
 ```sh-session
-$ noteli (-v|--version|version)
+$ noteli version
 noteli/1.5.4 win32-x64 node-v14.16.1
 ...
 ```
@@ -57,6 +57,7 @@ The following functionality is demoed in the video
 * [`noteli read`](#noteli-read)
 * [`noteli update <ID>`](#noteli-update-id)
 * [`noteli whoami`](#noteli-whoami)
+* [`noteli version`](#noteli-version)
 
 ## `noteli create`
 
@@ -180,6 +181,19 @@ USAGE
 
 DESCRIPTION
   Checks for the token and verifies with Auth0 for authencticity.
+```
+
+_See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.5.4/src/commands/whoami.ts)_
+
+## `noteli version`
+
+shows the current version of noteli downloaded on your computer
+```
+USAGE
+  $ noteli (-v|--version|version)
+
+DESCRIPTION
+  Verifies the version of noteli
 ```
 
 _See code: [src/commands/whoami.ts](https://github.com/sahilpabale/noteli/blob/v1.5.4/src/commands/whoami.ts)_
